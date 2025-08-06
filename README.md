@@ -223,6 +223,11 @@ docker-compose down -v
 3. **Close unnecessary browser tabs**
 4. **Use Chrome/Firefox** for best compatibility
 
+
+## Clone the repo if needed for your own use
+## git clone https://github.com/axharish04/gameserv2-retro-emulator.git
+## cd gameserv2-retro-emulator
+
 ## 📄 License
 
 This project uses the WebRetro emulator by BinBashBanana, which is released under the MIT License.
