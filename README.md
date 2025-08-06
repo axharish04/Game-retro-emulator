@@ -225,8 +225,8 @@ docker-compose down -v
 
 
 ## Clone the repo if needed for your own use
-## git clone https://github.com/axharish04/gameserv2-retro-emulator.git
-## cd gameserv2-retro-emulator
+# git clone https://github.com/axharish04/gameserv2-retro-emulator.git
+# cd gameserv2-retro-emulator
 
 ## 📄 License
 
