@@ -1,4 +1,4 @@
-# GameServ2 - Enhanced WebRetro Docker Platform 
+# GAME-EMULATOR - Enhanced WebRetro Docker Platform 
 
 ##  LEGAL NOTICE - READ FIRST
 
