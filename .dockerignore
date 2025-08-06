@@ -1,0 +1,51 @@
+# Docker ignore file for WebRetro
+# Ignore files that shouldn't be included in the Docker build context
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime directories
+roms/
+saves/
+*.db
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Git
+.git/
+.gitignore
+
+# Docker
+.dockerignore
+docker-compose.yml
+*.md
+
+# Scripts (they're copied separately if needed)
+setup.sh
+setup.bat
+
+# Temporary files
+tmp/
+temp/
+.tmp

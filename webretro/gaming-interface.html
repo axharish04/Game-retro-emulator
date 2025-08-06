@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroGaming Hub - Play Classic Games</title>
+    <link rel="stylesheet" href="assets/gaming-interface.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/icons/icon204.png">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="grid-overlay"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">🎮</div>
+                <div class="logo-text">
+                    <h1>RetroGaming Hub</h1>
+                    <span>Classic Games Collection</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" onclick="showSection('games')">
+                    <span class="icon">🎯</span>
+                    <span>Games</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('systems')">
+                    <span class="icon">🎛️</span>
+                    <span>Systems</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('controls')">
+                    <span class="icon">🎮</span>
+                    <span>Controls</span>
+                </button>
+                <button class="nav-btn" onclick="window.open('/api/roms', '_blank')">
+                    <span class="icon">📊</span>
+                    <span>API</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section id="welcome" class="section active">
+                <div class="welcome-content">
+                    <div class="welcome-text">
+                        <h2 class="welcome-title">Welcome to RetroGaming Hub</h2>
+                        <p class="welcome-subtitle">Experience the golden age of gaming in your browser</p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalSystems">20+</div>
+                                <div class="stat-label">Systems</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalGames">0</div>
+                                <div class="stat-label">Games</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">∞</div>
+                                <div class="stat-label">Fun</div>
+                            </div>
+                        </div>
+                        <div class="welcome-actions">
+                            <button class="btn btn-primary" onclick="showSection('games')">
+                                <span class="btn-icon">🚀</span>
+                                Start Playing
+                            </button>
+                            <button class="btn btn-secondary" onclick="showSection('systems')">
+                                <span class="btn-icon">🔍</span>
+                                Explore Systems
+                            </button>
+                        </div>
+                    </div>
+                    <div class="welcome-visual">
+                        <div class="console-showcase">
+                            <div class="console-item nes">
+                                <div class="console-screen"></div>
+                                <div class="console-body"></div>
+                            </div>
+                            <div class="console-item gameboy">
+                                <div class="gameboy-screen"></div>
+                                <div class="gameboy-controls"></div>
+                            </div>
+                            <div class="console-item controller">
+                                <div class="controller-body">
+                                    <div class="dpad"></div>
+                                    <div class="buttons">
+                                        <div class="button-a"></div>
+                                        <div class="button-b"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Games Section -->
+            <section id="games" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">🎮 Game Library</h2>
+                    <div class="section-controls">
+                        <select id="systemFilter" class="filter-select">
+                            <option value="">All Systems</option>
+                        </select>
+                        <input type="text" id="gameSearch" class="search-input" placeholder="🔍 Search games...">
+                        <button class="btn btn-refresh" onclick="loadGames()">
+                            <span class="btn-icon">🔄</span>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+                <div id="gamesGrid" class="games-grid">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading games...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Systems Section -->
+            <section id="systems" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">🎛️ Gaming Systems</h2>
+                    <p class="section-description">Explore the legendary consoles that defined gaming history</p>
+                </div>
+                <div id="systemsGrid" class="systems-grid">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading systems...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls Section -->
+            <section id="controls" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">🎮 Game Controls</h2>
+                    <p class="section-description">Master the controls for the ultimate retro gaming experience</p>
+                </div>
+                <div class="controls-grid">
+                    <div class="control-card">
+                        <div class="control-icon">⌨️</div>
+                        <h3>Keyboard Controls</h3>
+                        <div class="control-mapping">
+                            <div class="control-row">
+                                <span class="key">Arrow Keys</span>
+                                <span class="action">D-Pad Movement</span>
+                            </div>
+                            <div class="control-row">
+                                <span class="key">Z</span>
+                                <span class="action">A Button</span>
+                            </div>
+                            <div class="control-row">
+                                <span class="key">X</span>
+                                <span class="action">B Button</span>
+                            </div>
+                            <div class="control-row">
+                                <span class="key">Enter</span>
+                                <span class="action">Start</span>
+                            </div>
+                            <div class="control-row">
+                                <span class="key">Shift</span>
+                                <span class="action">Select</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-card">
+                        <div class="control-icon">🎮</div>
+                        <h3>Gamepad Support</h3>
+                        <div class="control-info">
+                            <p>Connect your USB gamepad for the authentic retro gaming experience!</p>
+                            <ul>
+                                <li>Xbox Controllers</li>
+                                <li>PlayStation Controllers</li>
+                                <li>Generic USB Gamepads</li>
+                                <li>Retro USB Controllers</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="control-card">
+                        <div class="control-icon">💾</div>
+                        <h3>Save System</h3>
+                        <div class="control-info">
+                            <p>Multiple ways to save your progress:</p>
+                            <ul>
+                                <li><strong>In-Game Saves:</strong> Use the game's save feature</li>
+                                <li><strong>Save States:</strong> Save anywhere, anytime</li>
+                                <li><strong>Auto-Save:</strong> Automatic saves every 5 minutes</li>
+                                <li><strong>Export/Import:</strong> Backup your saves</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Game Modal -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalGameTitle">Game Title</h3>
+                <div class="modal-controls">
+                    <button class="btn btn-small" onclick="toggleFullscreen()" id="fullscreenBtn">
+                        <span class="btn-icon">⛶</span>
+                        Fullscreen
+                    </button>
+                    <button class="btn btn-small btn-danger" onclick="closeGame()">
+                        <span class="btn-icon">✕</span>
+                        Close
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="gameContainer" class="game-container">
+                    <iframe id="gameFrame" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <div class="game-stats">
+                        <span id="gameSystem">System: Loading...</span>
+                        <span id="gameSize">Size: Loading...</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="btn btn-small" onclick="saveGame()">
+                            <span class="btn-icon">💾</span>
+                            Save
+                        </button>
+                        <button class="btn btn-small" onclick="resetGame()">
+                            <span class="btn-icon">🔄</span>
+                            Reset
+                        </button>
+                        <button class="btn btn-small" onclick="downloadSave()">
+                            <span class="btn-icon">📥</span>
+                            Export Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>RetroGaming Hub</h4>
+                    <p>Bringing classic games to modern browsers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/api/roms" target="_blank">ROM API</a>
+                    <a href="/api/systems" target="_blank">Systems API</a>
+                    <a href="/health" target="_blank">Health Check</a>
+                    <a href="http://localhost:8080" target="_blank">File Manager</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Powered By</h4>
+                    <p>WebRetro • Docker • RetroArch</p>
+                    <p>Made with ❤️ for retro gaming</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/gaming-interface.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  webretro:
+    build: .
+    container_name: webretro-emulator
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount your ROMs directory here
+      - ./roms:/app/webretro/roms
+      # Optional: Mount saves directory for persistent game saves
+      - ./saves:/app/webretro/saves
+    environment:
+      - PORT=8000
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - webretro-network
+
+  # Optional: Add a file browser for easy ROM management
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: webretro-filebrowser
+    ports:
+      - "8080:80"
+    volumes:
+      - ./roms:/srv/roms
+      - ./saves:/srv/saves
+      - ./filebrowser.db:/database.db
+      - ./filebrowser.json:/.filebrowser.json
+    environment:
+      - FB_DATABASE=/database.db
+      - FB_CONFIG=/.filebrowser.json
+    restart: unless-stopped
+    networks:
+      - webretro-network
+
+networks:
+  webretro-network:
+    driver: bridge
+
+volumes:
+  roms:
+  saves:
