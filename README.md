@@ -1,22 +1,22 @@
-# GameServ2 - Enhanced WebRetro Docker Platform 🎮
+# GameServ2 - Enhanced WebRetro Docker Platform 
 
-## 🚨 LEGAL NOTICE - READ FIRST
+##  LEGAL NOTICE - READ FIRST
 
 **This project contains NO copyrighted ROMs or BIOS files. You must provide your own legally obtained content.**
 
-### ⚖️ Legal Requirements:
+### ⚖ Legal Requirements:
 - **Own Physical Copies**: You must own the original cartridge/disc
 - **Personal Backups Only**: ROMs must be your own backups
 - **Follow Local Laws**: Copyright laws vary by jurisdiction
 - **No Distribution**: Do not share copyrighted ROMs
 
-📖 **See [LEGAL_USAGE.md](LEGAL_USAGE.md) for complete legal guidelines**
+**See [LEGAL_USAGE.md](LEGAL_USAGE.md) for complete legal guidelines**
 
 ---
 
 A fully containerized retro gaming experience using WebRetro emulator with Docker. Play classic games from multiple consoles directly in your web browser!
 
-## 🌟 Features
+##  Features
 
 - **Multi-System Support**: Play games from 20+ retro consoles
 - **Web-Based**: No installation required, runs in any modern browser
@@ -26,7 +26,7 @@ A fully containerized retro gaming experience using WebRetro emulator with Docke
 - **API Endpoints**: REST API for ROM and system information
 - **Health Monitoring**: Built-in health checks and monitoring
 
-## 🎯 Supported Systems
+## Supported Systems
 
 | System | Core | File Extensions |
 |--------|------|----------------|
@@ -54,7 +54,7 @@ A fully containerized retro gaming experience using WebRetro emulator with Docke
 | Channel F | freechaf_libretro | .bin |
 | Neo Geo CD | neocd_libretro | .bin/.cue |
 
-## 🚀 Quick Start
+## ---> Quick Start
 
 ### Windows Users
 
@@ -96,7 +96,7 @@ A fully containerized retro gaming experience using WebRetro emulator with Docke
    docker-compose up -d --build
    ```
 
-## 📁 Directory Structure
+##  Directory Structure
 
 ```
 gameserv2/
@@ -120,13 +120,12 @@ gameserv2/
 
 ## 🌐 Service URLs
 
-- **🎮 WebRetro Emulator**: http://localhost:8000
-- **📁 File Browser**: http://localhost:8080 (admin/admin)
-- **📊 Health Check**: http://localhost:8000/health
-- **🎯 Systems API**: http://localhost:8000/api/systems
-- **📂 ROMs API**: http://localhost:8000/api/roms
+- **# WebRetro Emulator**: http://localhost:8000
+- **# File Browser**: http://localhost:8080 (admin/admin)
+- **# Health Check**: http://localhost:8000/health
+- **# Systems API**: http://localhost:8000/api/systems
 
-## 🎮 How to Add ROMs
+##  How to Add ROMs
 
 ### Method 1: File Browser (Recommended)
 1. Access the file browser at http://localhost:8080
@@ -209,80 +208,13 @@ docker-compose pull && docker-compose up -d
 docker-compose down -v
 ```
 
-## 📊 API Endpoints
-
-### GET /api/systems
-Returns information about all supported emulation systems.
-
-```json
-{
-  "nes": {
-    "name": "Nintendo Entertainment System",
-    "core": "nestopia_libretro",
-    "extensions": [".nes"],
-    "description": "8-bit home video game console by Nintendo"
-  }
-}
-```
-
-### GET /api/roms
-Returns all available ROM files organized by system.
-
-```json
-{
-  "nes": [
-    {
-      "name": "game.nes",
-      "path": "/roms/nes/game.nes",
-      "system": "nes",
-      "size": 12345
-    }
-  ]
-}
-```
-
-### GET /health
-Returns server health status.
-
-```json
-{
-  "status": "healthy",
-  "timestamp": "2025-01-18T10:00:00.000Z",
-  "uptime": 3600,
-  "port": 8000
-}
-```
-
-## 🔒 Security Notes
+##  Security Notes
 
 1. **Change default passwords**: The file browser uses `admin/admin` by default
 2. **Network access**: The emulator is accessible on all network interfaces
 3. **ROM legality**: Only use ROMs you legally own
 4. **Resource limits**: Consider setting Docker resource limits for production use
 
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Container won't start**
-   ```bash
-   docker-compose logs webretro
-   ```
-
-2. **ROM files not showing**
-   - Check file permissions
-   - Ensure correct directory structure
-   - Restart the container
-
-3. **Emulator not loading**
-   - Check browser console for errors
-   - Ensure SharedArrayBuffer is supported
-   - Try a different browser
-
-4. **Save states not working**
-   - Check browser IndexedDB support
-   - Clear browser cache
-   - Ensure saves volume is mounted
 
 ### Performance Optimization
 
@@ -295,7 +227,7 @@ Returns server health status.
 
 This project uses the WebRetro emulator by BinBashBanana, which is released under the MIT License.
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -303,13 +235,13 @@ This project uses the WebRetro emulator by BinBashBanana, which is released unde
 4. Test thoroughly
 5. Submit a pull request
 
-## 📞 Support
+##  Support
 
 - Create an issue for bugs or feature requests
 - Check existing issues before creating new ones
 - Provide detailed information about your environment
 
-## 🎉 Acknowledgments
+##  Acknowledgments
 
 - **WebRetro** by BinBashBanana - The amazing web-based emulator
 - **Libretro/RetroArch** - The emulation cores
